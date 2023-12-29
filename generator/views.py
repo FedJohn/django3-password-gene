@@ -15,13 +15,18 @@ def home(request):
     if request.GET.get('special'):
         char.extend(list('!@#$%&*?'))
 
+    if request.GET.get('length')== None:
+        return render(request, 'generator/test.html')
+    
+    else:
 
-    length = int(request.GET.get('length'))
-    passw =""
-    for x in range(length):
-        passw += random.choice(char)
-
-    return render(request, 'generator/test.html', {'password':passw})
+        length = int(request.GET.get('length'))
+        passw =""
+        for x in range(length):
+            passw += random.choice(char)
+        
+    return render(request, 'generator/test.html', {'password':passw, 'log':length})
+        
 
 # def data(request):
 #     char = list('abcdefghijklmnopqrstuvwxyz')
